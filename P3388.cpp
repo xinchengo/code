@@ -1,7 +1,7 @@
 // Fear cuts deeper than swords.
 
-#include<iostream>
-#include<queue>
+#include <iostream>
+#include <queue>
 using namespace std;
 int n, m, x, y;
 bool isc[20007];
@@ -13,43 +13,43 @@ void dfs(int cur, int root)
     low[cur] = dfn[cur];
     q[cur] = 1;
     int ch = 0;
-    for(int nxt : g[cur])
+    for (int nxt : g[cur])
     {
-        if(!dfn[nxt])
+        if (!dfn[nxt])
         {
             dfs(nxt, root);
             ch++;
             low[cur] = min(low[cur], low[nxt]);
-            if(low[nxt] >= dfn[cur] && cur != root)
+            if (low[nxt] >= dfn[cur] && cur != root)
                 isc[cur] = true;
         }
-        //if(q[nxt])
+        // if(q[nxt])
         {
             low[cur] = min(low[cur], dfn[nxt]);
         }
     }
-    if(cur == root && ch >= 2)
+    if (cur == root && ch >= 2)
         isc[cur] = true;
     q[cur] = 0;
 }
 int main()
 {
     cin >> n >> m;
-    for(int i=1;i<=m;i++)
+    for (int i = 1; i <= m; i++)
     {
         cin >> x >> y;
         g[x].push_back(y);
         g[y].push_back(x);
     }
-    for(int i=1;i<=n;i++)
-        if(!dfn[i])
+    for (int i = 1; i <= n; i++)
+        if (!dfn[i])
             dfs(i, i);
-    for(int i=1;i<=n;i++)
-        if(isc[i])
+    for (int i = 1; i <= n; i++)
+        if (isc[i])
             ans++;
     cout << ans << endl;
-    for(int i=1;i<=n;i++)
-        if(isc[i])
+    for (int i = 1; i <= n; i++)
+        if (isc[i])
             cout << i << ' ';
     cout << endl;
 }

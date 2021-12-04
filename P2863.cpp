@@ -1,9 +1,9 @@
 // Fear cuts deeper than swords.
 
-#include<algorithm>
-#include<iostream>
-#include<vector>
-#include<stack>
+#include <algorithm>
+#include <iostream>
+#include <stack>
+#include <vector>
 using namespace std;
 int n, m;
 int a, b;
@@ -17,20 +17,20 @@ void dfs(int cur)
     low[cur] = dfn[cur];
     q[cur] = 1;
     s.push(cur);
-    for(int nxt : g[cur])
+    for (int nxt : g[cur])
     {
-        if(!dfn[nxt])
+        if (!dfn[nxt])
         {
             dfs(nxt);
             low[cur] = min(low[cur], low[nxt]);
         }
-        if(q[nxt])
+        if (q[nxt])
             low[cur] = min(low[cur], dfn[nxt]);
     }
-    if(dfn[cur] == low[cur])
+    if (dfn[cur] == low[cur])
     {
         bcnt++;
-        while(s.top() != cur)
+        while (s.top() != cur)
         {
             bs[bcnt]++;
             q[s.top()] = 0;
@@ -44,16 +44,16 @@ void dfs(int cur)
 int main()
 {
     cin >> n >> m;
-    for(int i=1;i<=m;i++)
+    for (int i = 1; i <= m; i++)
     {
         cin >> a >> b;
         g[a].push_back(b);
     }
-    for(int i=1;i<=n;i++)
-        if(!dfn[i])
+    for (int i = 1; i <= n; i++)
+        if (!dfn[i])
             dfs(i);
-    for(int i=1;i<=bcnt;i++)
-        if(bs[i] > 1)
+    for (int i = 1; i <= bcnt; i++)
+        if (bs[i] > 1)
             ans++;
     cout << ans << endl;
 }

@@ -1,15 +1,15 @@
 // Fear cuts deeper than swords.
 
-#include<algorithm>
-#include<iostream>
-#include<vector>
-#include<string>
-#include<stack>
-#include<map>
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <stack>
+#include <string>
+#include <vector>
 using namespace std;
 int n, m;
 string a, b;
-map<string,int> name;
+map<string, int> name;
 vector<int> g[8007];
 stack<int> s;
 int cnt, dfn[8007], low[8007], q[8007];
@@ -20,20 +20,20 @@ void tarjan(int cur)
     low[cur] = dfn[cur];
     q[cur] = 1;
     s.push(cur);
-    for(int nxt : g[cur])
+    for (int nxt : g[cur])
     {
-        if(!dfn[nxt])
+        if (!dfn[nxt])
         {
             tarjan(nxt);
             low[cur] = min(low[cur], low[nxt]);
         }
-        if(q[nxt])
+        if (q[nxt])
             low[cur] = min(low[cur], dfn[nxt]);
     }
-    if(low[cur] == dfn[cur])
+    if (low[cur] == dfn[cur])
     {
         bcnt++;
-        while(s.top() != cur)
+        while (s.top() != cur)
         {
             bs[bcnt]++;
             belong[s.top()] = bcnt;
@@ -49,24 +49,24 @@ void tarjan(int cur)
 int main()
 {
     cin >> n;
-    for(int i=1;i<=n;i++)
+    for (int i = 1; i <= n; i++)
     {
         cin >> a >> b;
-        name[a] = i*2-1;
-        name[b] = i*2;
-        g[i*2-1].push_back(i*2);
+        name[a] = i * 2 - 1;
+        name[b] = i * 2;
+        g[i * 2 - 1].push_back(i * 2);
     }
     cin >> m;
-    for(int i=1;i<=m;i++)
+    for (int i = 1; i <= m; i++)
     {
         cin >> a >> b;
         g[name[b]].push_back(name[a]);
     }
-    for(int i=1;i<=n*2;i++)
-        if(!dfn[i])
+    for (int i = 1; i <= n * 2; i++)
+        if (!dfn[i])
             tarjan(i);
-    for(int i=1;i<=n;i++)
-        if(belong[i*2-1] == belong[i*2])
+    for (int i = 1; i <= n; i++)
+        if (belong[i * 2 - 1] == belong[i * 2])
             cout << "Unsafe" << endl;
         else
             cout << "Safe" << endl;

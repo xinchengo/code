@@ -1,8 +1,8 @@
 // Fear cuts deeper than swords.
 
-#include<algorithm>
-#include<iostream>
-#include<vector>
+#include <algorithm>
+#include <iostream>
+#include <vector>
 #define int long long
 using namespace std;
 int n, m;
@@ -16,38 +16,38 @@ void dfs(int cur)
     siz[cur] = 1;
     q[cur] = 1;
     int ch = 0, s = 0;
-    for(auto nxt : g[cur])
+    for (auto nxt : g[cur])
     {
-        if(!dfn[nxt])
+        if (!dfn[nxt])
         {
             dfs(nxt);
             siz[cur] += siz[nxt];
             low[cur] = min(low[cur], low[nxt]);
-            if(low[nxt] >= dfn[cur])
+            if (low[nxt] >= dfn[cur])
             {
-                ans[cur] += siz[nxt] * (n-siz[nxt]);
+                ans[cur] += siz[nxt] * (n - siz[nxt]);
                 ch++;
-                s+=siz[nxt];
-                isc[cur] = isc[cur] || (ch>=2||cur!=1);
+                s += siz[nxt];
+                isc[cur] = isc[cur] || (ch >= 2 || cur != 1);
             }
         }
-        if(q[nxt])
+        if (q[nxt])
             low[cur] = min(low[cur], dfn[nxt]);
     }
-    ans[cur] = (isc[cur]?(ans[cur]+(s+1)*(n-s-1)+(n-1)):(2*n-2));
+    ans[cur] = (isc[cur] ? (ans[cur] + (s + 1) * (n - s - 1) + (n - 1)) : (2 * n - 2));
     q[cur] = 0;
 }
 signed main()
 {
     cin >> n >> m;
-    for(int i=1;i<=m;i++)
+    for (int i = 1; i <= m; i++)
     {
         cin >> a >> b;
         g[a].push_back(b);
         g[b].push_back(a);
     }
     dfs(1);
-    for(int i=1;i<=n;i++)
+    for (int i = 1; i <= n; i++)
         cout << ans[i] << endl;
     return 0;
 }
