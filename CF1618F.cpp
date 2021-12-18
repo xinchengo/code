@@ -1,17 +1,17 @@
-#include<iostream>
-#include<queue>
-#include<set>
-#include<algorithm>
-#include<string>
+#include <algorithm>
+#include <iostream>
+#include <queue>
+#include <set>
+#include <string>
 using namespace std;
 long long a, b;
 string a_s, b_s;
 string to_binary(long long x)
 {
     string ans;
-    while(x)
+    while (x)
     {
-        ans.push_back((x&1)+'0');
+        ans.push_back((x & 1) + '0');
         x >>= 1;
     }
     return ans;
@@ -19,17 +19,17 @@ string to_binary(long long x)
 string op(string &s, int t)
 {
     string ans;
-    if(t == 0)
+    if (t == 0)
     {
         ans = "0" + s;
-        reverse(ans.begin(),ans.end());
-        while(ans.back() == '0')
+        reverse(ans.begin(), ans.end());
+        while (ans.back() == '0')
             ans.pop_back();
     }
     else
     {
         ans = "1" + s;
-        reverse(ans.begin(),ans.end());
+        reverse(ans.begin(), ans.end());
     }
     return ans;
 }
@@ -42,20 +42,20 @@ int main()
     b_s = to_binary(b);
     q.push(a_s);
     s.insert(a_s);
-    for(;q.size();)
+    for (; q.size();)
     {
         string cur = q.front();
         q.pop();
-        if(cur.size() >= 101)
+        if (cur.size() >= 101)
             continue;
-        for(int j=0;j<=1;j++)
+        for (int j = 0; j <= 1; j++)
         {
             string nxt = op(cur, j);
-            if(s.count(nxt) == 0)
-               q.push(nxt), s.insert(nxt);
+            if (s.count(nxt) == 0)
+                q.push(nxt), s.insert(nxt);
         }
     }
-    if(s.count(b_s))
+    if (s.count(b_s))
         cout << "YES" << endl;
     else
         cout << "NO" << endl;
