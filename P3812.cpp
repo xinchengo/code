@@ -17,17 +17,17 @@ void insert1(long long x)
 }
 void insert2(long long x)
 {
-    for(int i=50;i>=0;i--)
-        if(x>>i)
+    for (int i = 50; i >= 0; i--)
+        if (x >> i)
         {
-            if(p[i] == 0)
+            if (p[i] == 0)
             {
                 p[i] = x;
-                for(int j=i-1;j>=0;j--)
-                    if(p[j] && (p[i] >> j & 1))
+                for (int j = i - 1; j >= 0; j--)
+                    if (p[j] && (p[i] >> j & 1))
                         p[i] ^= p[j];
-                for(int j=i+1;j<=50;j++)
-                    if(p[j] >> i & 1)
+                for (int j = i + 1; j <= 50; j++)
+                    if (p[j] >> i & 1)
                         p[j] ^= p[i];
             }
         }
@@ -38,7 +38,7 @@ int main()
     for (int i = 1; i <= n; i++)
         cin >> a[i];
     int x = rand() % 2;
-    if(x)
+    if (x)
     {
         for (int i = 1; i <= n; i++)
             insert1(a[i]);
@@ -48,9 +48,9 @@ int main()
     }
     else
     {
-        for(int i=1;i<=n;i++)
+        for (int i = 1; i <= n; i++)
             insert2(a[i]);
-        for(int i=50;i>=0;i--)
+        for (int i = 50; i >= 0; i--)
             ans = ans ^ p[i];
     }
     cout << ans << endl;
