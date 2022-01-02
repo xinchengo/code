@@ -34,3 +34,6 @@
 # VS Code Config File
 /.vscode
 /bin
+
+*.ilk
+*.pdb
