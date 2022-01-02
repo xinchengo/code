@@ -5,7 +5,10 @@ struct node
     node *ch[2];
     int val, cnt;
     node(int v) : ch{0, 0}, val(v), cnt(1){};
-    int find(int v) { return v == val ? -1 : v > val; }
+    int find(int v)
+    {
+        return v == val ? -1 : v > val;
+    }
 } *root = 0;
 void rotate(node *&cur, bool type)
 {
@@ -38,7 +41,10 @@ void _insert(node *&cur, int val)
     else
         _insert(cur->ch[cur->find(val)], val);
 }
-void insert(int val) { _insert(root, val), splay(root, val); }
+void insert(int val)
+{
+    _insert(root, val), splay(root, val);
+}
 int val(int v)
 {
     splay(root, v);

@@ -4,10 +4,21 @@ struct node
 {
     node *ch[2];
     int val, cnt, siz;
-    node(int v) : ch{nullptr, nullptr}, val(v), cnt(1), siz(1) {}
-    void pushup() { siz = (ch[0] == nullptr ? 0 : ch[0]->siz) + cnt + (ch[1] == nullptr ? 0 : ch[1]->siz); }
-    int find(int v) { return v == val ? -1 : v > val; }
-    int chsiz(int x) { return ch[x] == nullptr ? 0 : ch[x]->siz; }
+    node(int v) : ch{nullptr, nullptr}, val(v), cnt(1), siz(1)
+    {
+    }
+    void pushup()
+    {
+        siz = (ch[0] == nullptr ? 0 : ch[0]->siz) + cnt + (ch[1] == nullptr ? 0 : ch[1]->siz);
+    }
+    int find(int v)
+    {
+        return v == val ? -1 : v > val;
+    }
+    int chsiz(int x)
+    {
+        return ch[x] == nullptr ? 0 : ch[x]->siz;
+    }
 } *root = nullptr;
 void rotate(node *&cur, bool type)
 {
@@ -50,7 +61,7 @@ void insert(int val)
 void del(int val)
 {
     splay(root, val);
-    if(root->cnt > 1)
+    if (root->cnt > 1)
     {
         root->cnt--;
         return;
@@ -61,7 +72,7 @@ void del(int val)
         cur = root->ch[1], delete root, root = cur;
         return;
     }
-    while(cur->ch[1] != nullptr)
+    while (cur->ch[1] != nullptr)
         cur = cur->ch[1];
     cur->ch[1] = root->ch[1];
     cur = root->ch[0];
@@ -74,7 +85,7 @@ int pre(int val)
     node *cur = root->ch[0];
     if (cur == nullptr)
         return 0;
-    while(cur->ch[1] != nullptr)
+    while (cur->ch[1] != nullptr)
         cur = cur->ch[1];
     del(val);
     return cur->val;
@@ -85,7 +96,7 @@ int suc(int val)
     node *cur = root->ch[1];
     if (cur == nullptr)
         return 0;
-    while(cur->ch[0] != nullptr)
+    while (cur->ch[0] != nullptr)
         cur = cur->ch[0];
     del(val);
     return cur->val;
@@ -93,7 +104,7 @@ int suc(int val)
 int rankof(int val)
 {
     insert(val);
-    int rank = root->chsiz(0)+1;
+    int rank = root->chsiz(0) + 1;
     del(val);
     return rank;
 }

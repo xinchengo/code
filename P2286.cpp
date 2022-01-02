@@ -3,13 +3,18 @@
 using namespace std;
 class splay_tree
 {
-private:
+  private:
     struct node
     {
         node *ch[2];
         int val, cnt;
-        node(int v) : ch{nullptr, nullptr}, val(v), cnt(1) {}
-        int find(int v) { return v == val ? -1 : v > val; }
+        node(int v) : ch{nullptr, nullptr}, val(v), cnt(1)
+        {
+        }
+        int find(int v)
+        {
+            return v == val ? -1 : v > val;
+        }
     } *root = nullptr;
     void rotate(node *&cur, bool type)
     {
@@ -43,8 +48,11 @@ private:
             _insert(cur->ch[cur->find(v)], v);
     }
 
-public:
-    void insert(int v) { _insert(root, v), splay(root, v); }
+  public:
+    void insert(int v)
+    {
+        _insert(root, v), splay(root, v);
+    }
     void del(int v)
     {
         splay(root, v);
@@ -94,7 +102,10 @@ public:
         del(v);
         return nxt == nullptr ? 0x7fffffff : nxt->val;
     }
-    bool empty() { return root == nullptr; }
+    bool empty()
+    {
+        return root == nullptr;
+    }
 } pets, customers, test_tree;
 int n, ans, opt, x;
 signed main()
