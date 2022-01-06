@@ -8,7 +8,10 @@ struct node
     long long sum, val, lzy;
     int siz;
     node(long long v) : ch{nullptr, nullptr}, sum(v), val(v), siz(1), lzy(0){};
-    bool exist(int x) { return ch[x] != nullptr; }
+    bool exist(int x)
+    {
+        return ch[x] != nullptr;
+    }
     void pushup()
     {
         sum = val, siz = 1;
@@ -66,7 +69,9 @@ void splay_kth(node *&cur, int k)
         rotate(cur, type1);
         return;
     }
-    splay_kth(cur->ch[type1]->ch[type2], k - (type1 ? ((cur->exist(0) ? cur->ch[0]->siz : 0) + 1) : 0) - (type2 ? ((cur->ch[type1]->exist(0) ? cur->ch[type1]->ch[0]->siz : 0) + 1) : 0));
+    splay_kth(cur->ch[type1]->ch[type2],
+              k - (type1 ? ((cur->exist(0) ? cur->ch[0]->siz : 0) + 1) : 0) -
+                  (type2 ? ((cur->ch[type1]->exist(0) ? cur->ch[type1]->ch[0]->siz : 0) + 1) : 0));
     if (type1 == type2)
         rotate(cur, type1), rotate(cur, type2);
     else
@@ -108,8 +113,8 @@ int main()
     {
         cin >> o >> x >> y;
         if (o == 1)
-            cin >> k, add(x+1, y+1, k);
+            cin >> k, add(x + 1, y + 1, k);
         else
-            cout << ask(x+1, y+1) << endl;
+            cout << ask(x + 1, y + 1) << endl;
     }
 }
