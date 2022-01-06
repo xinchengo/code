@@ -17,11 +17,11 @@ int quick_pow(int b, int p)
     return ans;
 }
 int calc(int i, int j)
- {
+{
     if (f[i][j] != -1)
         1;
     else if (i > j)
-        f[i][j] = ((quick_pow(j, i) - quick_pow(j - 1, i))%mod + mod) % mod;
+        f[i][j] = ((quick_pow(j, i) - quick_pow(j - 1, i)) % mod + mod) % mod;
     else if (i <= j)
     {
         f[i][j] = 0;
@@ -42,7 +42,7 @@ int main()
     for (int i = 0; i <= 500; i++)
         for (int j = 0; j <= 500; j++)
             f[i][j] = -1;
-    for(int i=1;i<=x;i++)
+    for (int i = 1; i <= x; i++)
         ans += calc(n, i), ans %= mod;
     cout << ans << endl;
 }
