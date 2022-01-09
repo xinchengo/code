@@ -1,5 +1,5 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 using namespace std;
 int t, n;
 int u, v;
@@ -59,7 +59,7 @@ int main()
                 ans[i] = lptr;
             }
         }
-        for(int i=1;i<=n;i++)
+        for (int i = 1; i <= n; i++)
             cout << ans[i] << ' ';
         cout << endl;
     }
