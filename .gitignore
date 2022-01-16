@@ -37,3 +37,8 @@
 
 *.ilk
 *.pdb
+
+# Input/Output Samples
+
+*.in
+*.ans
