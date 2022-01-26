@@ -42,3 +42,7 @@
 
 *.in
 *.ans
+
+# Vim Swap File
+
+*.swp
