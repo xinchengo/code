@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 const int maxm = 5;
 const int maxn = 2e5 + 7;

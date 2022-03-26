@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <stack>
 using namespace std;
 const int maxn = 5e5 + 7;
