@@ -1,5 +1,3 @@
-// Fear cuts deeper than swords.
-
 #include <algorithm>
 #include <iostream>
 #include <stack>
